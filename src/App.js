@@ -6,20 +6,19 @@
 // 5. Add emoji display to the screen
 
 ///////// NEW STUFF ADDED USE STATE
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 ///////// NEW STUFF ADDED USE STATE
 
-// import logo from './logo.svg';
-import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
+import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import "./App.css";
+import logo from "./logo.svg";
 import { drawHand } from "./utilities";
-
 ///////// NEW STUFF IMPORTS
 import * as fp from "fingerpose";
-import victory from "./victory.png";
 import thumbs_up from "./thumbs_up.png";
+import victory from "./victory.png";
 ///////// NEW STUFF IMPORTS
 
 function App() {
@@ -30,6 +29,28 @@ function App() {
   const [emoji, setEmoji] = useState(null);
   const images = { thumbs_up: thumbs_up, victory: victory };
   ///////// NEW STUFF ADDED STATE HOOK
+  const [deviceId, setDeviceId] = useState(null);
+
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      const videoDevices = devices.filter(
+        (device) => device.kind === "videoinput"
+      );
+      console.log("Available video devices:", videoDevices);
+
+      // Filter out virtual cameras or specific unwanted labels
+      const filtered = videoDevices.filter(
+        (d) => !/virtual|redmi/i.test(d.label)
+      );
+      const preferred = filtered[0] || videoDevices[0]; // fallback
+      if (preferred) {
+        console.log("Selected camera:", preferred.label);
+        setDeviceId(preferred.deviceId);
+      } else {
+        console.warn("No suitable camera found.");
+      }
+    });
+  }, []);
 
   const runHandpose = async () => {
     const net = await handpose.load();
@@ -37,7 +58,7 @@ function App() {
     //  Loop and detect hands
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 100);
   };
 
   const detect = async (net) => {
@@ -47,11 +68,13 @@ function App() {
       webcamRef.current !== null &&
       webcamRef.current.video.readyState === 4
     ) {
+      // console.log("Video is ready");
       // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
       const videoHeight = webcamRef.current.video.videoHeight;
 
+      // console.log(" Width: ", videoWidth, " Height: ", videoHeight);
       // Set video width
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
@@ -61,6 +84,7 @@ function App() {
       canvasRef.current.height = videoHeight;
 
       // Make Detections
+      // console.log("Make Detections");
       const hand = await net.estimateHands(video);
       // console.log(hand);
 
@@ -73,7 +97,7 @@ function App() {
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
-          // console.log(gesture.gestures);
+          console.log(gesture.gestures);
 
           const confidence = gesture.gestures.map(
             (prediction) => prediction.confidence
@@ -83,7 +107,7 @@ function App() {
           );
           // console.log(gesture.gestures[maxConfidence].name);
           setEmoji(gesture.gestures[maxConfidence].name);
-          console.log(emoji);
+          // console.log(emoji);
         }
       }
 
@@ -92,16 +116,26 @@ function App() {
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
       drawHand(hand, ctx);
+    } else {
+      console.log("Video not ready");
     }
   };
 
-  useEffect(()=>{runHandpose()},[]);
+  useEffect(() => {
+    runHandpose();
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <Webcam
           ref={webcamRef}
+          audio={false}
+          videoConstraints={{
+            deviceId: deviceId ? { exact: deviceId } : undefined,
+          }}
+          onUserMedia={() => console.log("Webcam initialized")}
+          onUserMediaError={(err) => console.error("Webcam error:", err)}
           style={{
             position: "absolute",
             marginLeft: "auto",
@@ -109,7 +143,7 @@ function App() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9,
+            zIndex: 9,
             width: 640,
             height: 480,
           }}
@@ -124,7 +158,7 @@ function App() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9,
+            zIndex: 9,
             width: 640,
             height: 480,
           }}
