@@ -5,30 +5,58 @@
 // 4. Update detect function for gesture handling
 // 5. Add emoji display to the screen
 
-///////// NEW STUFF ADDED USE STATE
+
 import React, { useEffect, useRef, useState } from "react";
-///////// NEW STUFF ADDED USE STATE
 
 import * as handpose from "@tensorflow-models/handpose";
 import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import "./App.css";
-import logo from "./logo.svg";
-import { drawHand } from "./utilities";
-///////// NEW STUFF IMPORTS
+
 import * as fp from "fingerpose";
+import { customGestures } from "./customGestures.js";
+
+import finger_up from "./finger_up.png";
+import logo from "./logo.svg";
 import thumbs_up from "./thumbs_up.png";
+import { drawHand } from "./utilities";
 import victory from "./victory.png";
-///////// NEW STUFF IMPORTS
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  ///////// NEW STUFF ADDED STATE HOOK
   const [emoji, setEmoji] = useState(null);
-  const images = { thumbs_up: thumbs_up, victory: victory };
-  ///////// NEW STUFF ADDED STATE HOOK
+  const [poseData, setPoseData] = useState([]);
+
+  // const images = {
+  //   thumbs_up: thumbs_up,
+  //   victory: victory,
+  //   finger_up: finger_up,
+  // };
+  const emojiMap = {
+    thumbs_up: "👍",
+    victory: "✌️",
+    one_finger: "☝️",
+    three_fingers: "🤟", // or "🖖" / "3️⃣"
+    four_fingers: "🖖", // or "4️⃣"
+    five_fingers: "🖐️", // or "5️⃣"
+    closed_hand: "✊",
+  };
+
+  const getCurlEmojiFromLabel = (curlLabel) => {
+    switch (curlLabel) {
+      case "No Curl":
+        return "🟢";
+      case "Half Curl":
+        return "🟡";
+      case "Full Curl":
+        return "🔴";
+      default:
+        return "❓";
+    }
+  };
+
   const [deviceId, setDeviceId] = useState(null);
 
   useEffect(() => {
@@ -92,12 +120,27 @@ function App() {
 
       if (hand.length > 0) {
         const GE = new fp.GestureEstimator([
-          fp.Gestures.VictoryGesture,
           fp.Gestures.ThumbsUpGesture,
+          ...customGestures,
         ]);
+
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
-          console.log(gesture.gestures);
+          const top3Scores = gesture.gestures
+            .map((prediction, index) => ({
+              name: prediction.name,
+              confidence: prediction.confidence,
+            }))
+            .sort((a, b) => b.confidence - a.confidence)
+            .slice(0, 3);
+
+          console.log("GestureEstimator raw output:", gesture.poseData);
+          setPoseData(gesture.poseData); // gesture.poseData is your (5) [Array(3), ...]
+
+          // console.log(`Top 3 Scores:
+          // 1. ${top3Scores[0].name} - ${top3Scores[0].confidence}
+          // 2. ${top3Scores[1].name} - ${top3Scores[1].confidence}
+          // 3. ${top3Scores[2].name} - ${top3Scores[2].confidence}`);
 
           const confidence = gesture.gestures.map(
             (prediction) => prediction.confidence
@@ -165,8 +208,7 @@ function App() {
         />
         {/* NEW STUFF */}
         {emoji !== null ? (
-          <img
-            src={images[emoji]}
+          <div
             style={{
               position: "absolute",
               marginLeft: "auto",
@@ -175,11 +217,34 @@ function App() {
               bottom: 500,
               right: 0,
               textAlign: "center",
-              height: 100,
+              fontSize: 100,
+              zIndex: 10,
             }}
-          />
-        ) : (
-          ""
+          >
+            {emojiMap[emoji] || "❓"}
+          </div>
+        ) : null}
+
+        {poseData.length > 0 && (
+          <div
+            style={{
+              position: "absolute",
+              top: 100,
+              right: 20,
+              fontSize: 30,
+              textAlign: "right",
+              zIndex: 10,
+              background: "rgba(0,0,0,0.4)",
+              padding: 10,
+              borderRadius: 8,
+            }}
+          >
+            {poseData.map((finger, i) => (
+              <div key={i}>
+                {finger[0]}: {getCurlEmojiFromLabel(finger[1])}
+              </div>
+            ))}
+          </div>
         )}
 
         {/* NEW STUFF */}
