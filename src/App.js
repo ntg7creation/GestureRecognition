@@ -57,6 +57,29 @@ function App() {
     }
   };
 
+  const getDirectionEmojiFromLabel = (directionLabel) => {
+    switch (directionLabel) {
+      case "Vertical Up":
+        return "⬆️";
+      case "Vertical Down":
+        return "⬇️";
+      case "Horizontal Left":
+        return "⬅️";
+      case "Horizontal Right":
+        return "➡️";
+      case "Diagonal Up Left":
+        return "↖️";
+      case "Diagonal Up Right":
+        return "↗️";
+      case "Diagonal Down Left":
+        return "↙️";
+      case "Diagonal Down Right":
+        return "↘️";
+      default:
+        return "❓";
+    }
+  };
+
   const [deviceId, setDeviceId] = useState(null);
 
   useEffect(() => {
@@ -241,7 +264,8 @@ function App() {
           >
             {poseData.map((finger, i) => (
               <div key={i}>
-                {finger[0]}: {getCurlEmojiFromLabel(finger[1])}
+                {finger[0]}: {getCurlEmojiFromLabel(finger[1])}{" "}
+                {getDirectionEmojiFromLabel(finger[2])}
               </div>
             ))}
           </div>

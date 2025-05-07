@@ -7,99 +7,57 @@ import {
 
 /** ☝️ ONE FINGER: Only index up */
 const OneFingerGesture = new GestureDescription("one_finger");
+OneFingerGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 5);
+OneFingerGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 15);
+OneFingerGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 5);
+OneFingerGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 5);
+OneFingerGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 5);
 
-OneFingerGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 8.0);
-OneFingerGesture.addDirection(Finger.Index, FingerDirection.VerticalUp, 0.1);
-
-[Finger.Thumb, Finger.Middle, Finger.Ring, Finger.Pinky].forEach((finger) => {
-  OneFingerGesture.addCurl(finger, FingerCurl.FullCurl, 0.5);
-  OneFingerGesture.addCurl(finger, FingerCurl.HalfCurl, 0.3);
-});
-
-/** ✌️ THREE FINGERS: Index, Middle, Ring up */
+/** 🤟 THREE FINGERS: Index, Middle, Ring up */
 const ThreeFingersGesture = new GestureDescription("three_fingers");
-
-[Finger.Index, Finger.Middle, Finger.Ring].forEach((finger) => {
-  ThreeFingersGesture.addCurl(finger, FingerCurl.NoCurl, 3.0);
-  ThreeFingersGesture.addDirection(finger, FingerDirection.VerticalUp, 0.1);
-});
-
-ThreeFingersGesture.addCurl(Finger.Ring, FingerCurl.HalfCurl, 1.5);
-
-[Finger.Thumb, Finger.Pinky].forEach((finger) => {
-  ThreeFingersGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
-  ThreeFingersGesture.addCurl(finger, FingerCurl.HalfCurl, 0.5);
-});
+ThreeFingersGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 0);
+ThreeFingersGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 10);
+ThreeFingersGesture.addCurl(Finger.Middle, FingerCurl.NoCurl, 10);
+ThreeFingersGesture.addCurl(Finger.Ring, FingerCurl.NoCurl, 10);
+ThreeFingersGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 5);
 
 /** 🖖 FOUR FINGERS: Thumb curled, others up */
 const FourFingersGesture = new GestureDescription("four_fingers");
-
-[Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky].forEach((finger) => {
-  FourFingersGesture.addCurl(finger, FingerCurl.NoCurl, 2.9);
-  FourFingersGesture.addDirection(finger, FingerDirection.VerticalUp, 0.1);
-});
-
-FourFingersGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 1.0);
-FourFingersGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 0.5);
-
-// /** 🖐 FIVE FINGERS: All extended */
-// const FiveFingersGesture = new GestureDescription("five_fingers");
-
-// Finger.all.forEach((finger) => {
-//   FiveFingersGesture.addCurl(finger, FingerCurl.NoCurl, 2.0);
-// });
-
-// FiveFingersGesture.addDirection(
-//   Finger.Thumb,
-//   FingerDirection.DiagonalUpLeft,
-//   1
-// );
-// FiveFingersGesture.addDirection(
-//   Finger.Thumb,
-//   FingerDirection.DiagonalUpRight,
-//   1
-// );
-// FiveFingersGesture.addDirection(
-//   Finger.Thumb,
-//   FingerDirection.HorizontalLeft,
-//   0.1
-// );
-// FiveFingersGesture.addDirection(
-//   Finger.Thumb,
-//   FingerDirection.HorizontalRight,
-//   0.1
-// );
-
-// [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky].forEach((finger) => {
-//   FiveFingersGesture.addDirection(finger, FingerDirection.VerticalUp, 0.1);
-// });
+FourFingersGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 0);
+FourFingersGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 7);
+FourFingersGesture.addCurl(Finger.Middle, FingerCurl.NoCurl, 7);
+FourFingersGesture.addCurl(Finger.Ring, FingerCurl.NoCurl, 7);
+FourFingersGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 14);
 
 /** ✊ CLOSED HAND: All curled */
 const FistGesture = new GestureDescription("closed_hand");
+FistGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 5);
+FistGesture.addCurl(Finger.Index, FingerCurl.FullCurl, 15);
+FistGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 5);
+FistGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 5);
+FistGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 5);
 
-Finger.all.forEach((finger) => {
-  FistGesture.addCurl(finger, FingerCurl.FullCurl, 2.0);
-  FistGesture.addCurl(finger, FingerCurl.HalfCurl, 1.0);
-});
-
-/** ✌️ VICTORY: Index + Middle up, thumb up, others curled */
+/** ✌️ VICTORY: Index + Middle up */
 const VictoryGesture = new GestureDescription("victory");
+VictoryGesture.addCurl(Finger.Thumb, FingerCurl.FullCurl, 0);
+VictoryGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 10);
+VictoryGesture.addCurl(Finger.Middle, FingerCurl.NoCurl, 10);
+VictoryGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 5);
+VictoryGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 10);
 
-[Finger.Index, Finger.Middle].forEach((finger) => {
-  VictoryGesture.addCurl(finger, FingerCurl.NoCurl, 4.0);
-  VictoryGesture.addDirection(finger, FingerDirection.VerticalUp, 0.1);
-});
-
-[Finger.Ring, Finger.Pinky].forEach((finger) => {
-  VictoryGesture.addCurl(finger, FingerCurl.FullCurl, 0.7);
-  VictoryGesture.addCurl(finger, FingerCurl.HalfCurl, 0.3);
-});
+/** 👍 THUMBS UP: Only thumb up */
+const ThumbsUpGesture = new GestureDescription("thumbs_up");
+ThumbsUpGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 15);
+ThumbsUpGesture.addCurl(Finger.Index, FingerCurl.FullCurl, 5);
+ThumbsUpGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 5);
+ThumbsUpGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 5);
+ThumbsUpGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 5);
 
 export const customGestures = [
   OneFingerGesture,
   ThreeFingersGesture,
   FourFingersGesture,
-  // FiveFingersGesture,
   FistGesture,
   VictoryGesture,
+  ThumbsUpGesture,
 ];
