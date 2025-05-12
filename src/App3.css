@@ -1,0 +1,53 @@
+.App3 {
+  text-align: center;
+  background-color: #1e1e1e;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App3-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.canvas-container {
+  position: relative;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px #888;
+}
+
+.canvas-container canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.overlay-panel {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  font-size: 26px;
+  text-align: right;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+}
+
+.emoji-display {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  font-size: 80px;
+  z-index: 100;
+}
