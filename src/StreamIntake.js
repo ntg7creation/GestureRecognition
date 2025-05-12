@@ -52,3 +52,30 @@ export const CameraFeed = ({ webcamRef, deviceId }) => (
     }}
   />
 );
+
+export const useImageStream = () => {
+  const imageRef = useRef(null);
+  return { webcamRef: imageRef, deviceId: null };
+};
+
+export const imageFeed = ({ webcamRef }) => {
+  return (
+    <img
+      ref={webcamRef}
+      src="/hand_sample.jpg" // Place image in `public/hand_sample.jpg`
+      alt="Static hand input"
+      style={{
+        position: "absolute",
+        marginLeft: "auto",
+        marginRight: "auto",
+        left: 0,
+        right: 0,
+        textAlign: "center",
+        zIndex: 9,
+        width: 640,
+        height: 480,
+      }}
+      onLoad={() => console.log("Image loaded")}
+    />
+  );
+};

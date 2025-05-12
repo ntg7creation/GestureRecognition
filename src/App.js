@@ -1,6 +1,8 @@
 import * as handpose from "@tensorflow-models/handpose";
 import * as tf from "@tensorflow/tfjs";
 import React, { useEffect, useRef, useState } from "react";
+// App.js
+import { imageFeed as ImageFeed, useImageStream } from "./StreamIntake"; // rename imageFeed to ImageFeed
 
 import "./App.css";
 import { detectGesture } from "./GestureDetection";
@@ -21,6 +23,9 @@ function App() {
       detectGesture(net, webcamRef, canvasRef, setEmoji, setPoseData);
     }, 100);
   };
+
+
+
 
   useEffect(() => {
     runHandpose();
