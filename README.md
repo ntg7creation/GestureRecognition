@@ -42,10 +42,10 @@ server/
 
 ### 1. Clone & Install
 
-```bash
+```
 git clone https://github.com/ntg7creation/GestureRecognition/tree/python_server
 cd your-repo
-```
+```bash
 
 ### 2. Install Frontend
 
