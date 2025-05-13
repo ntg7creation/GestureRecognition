@@ -1,68 +1,139 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🖐️ 3D Hand Gesture Recognition and Control
 
-## Available Scripts
+This project integrates a 3D hand model rendered in Three.js with real-time hand gesture recognition using TensorFlow.js. Users can visualize hand gestures, control individual fingers using the keyboard, and send gesture labels to a Python Flask backend server.
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## 🔧 Features
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 🧠 Real-time hand gesture detection using **@tensorflow-models/handpose** and **fingerpose**
+- ✋ Live overlay with emoji & finger pose information
+- 🎮 Keyboard-based control of 3D hand fingers (Q/W/E/R/G keys)
+- 📦 3D hand model (`GLB`) rendered with **Three.js** and **OrbitControls**
+- 🔁 Communication with a Flask API for gesture validation
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+## 📁 Project Structure
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+client/
+  ├── App3.js              # Main React entry point
+  ├── components/
+  │   ├── HandModelScene.jsx
+  │   ├── HandDetectionOverlay.jsx
+  │   ├── ThreeScene.js
+  │   ├── runHandposeDetection.js
+  │   ├── FingerController.js
+  │   ├── VisualOutput.js
+  │   ├── customGestures.js
+  │   ├── utilities.js
+  │   └── api.js           # Communicates with Flask backend
+  ├── App3.css             # Styling
+  └── index.js             # Entry point with <App3 />
+server/
+  ├── server.py            # Flask server
+  └── requirements.txt     # Backend dependencies
+```
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 How to Run
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### 1. Clone & Install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/ntg7creation/GestureRecognition/tree/python_server
+cd your-repo
+```
 
-### `yarn eject`
+### 2. Install Frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+cd client
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. Install Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+cd server
+pip install -r requirements.txt
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+### 4. Start Flask Server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd server
+python server.py
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Server will start at `http://localhost:5000`
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### 5. Start React Frontend
 
-### Analyzing the Bundle Size
+```bash
+cd client
+npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+App runs at `http://localhost:3000`
 
-### Making a Progressive Web App
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## 🖱️ Controls
 
-### Advanced Configuration
+- `Q` – pinky
+- `W` – ring
+- `E` – middle
+- `R` – index
+- `G` – thumb
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Hold keys to flex fingers on the 3D hand model.
 
-### Deployment
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## ✨ Gesture Set
 
-### `yarn build` fails to minify
+The system recognizes these gestures:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| Gesture Name  | Emoji | Description                     |
+|---------------|-------|---------------------------------|
+| `thumbs_up`   | 👍    | Only thumb extended             |
+| `victory`     | ✌️    | Index and middle extended       |
+| `one_finger`  | ☝️    | Only index extended             |
+| `three_fingers` | 🤟 | Index, middle, and ring extended |
+| `four_fingers` | 🖖   | All except thumb extended       |
+| `closed_hand` | ✊    | All fingers curled              |
+
+---
+
+## 🧠 Tech Stack
+
+- **React + Three.js** – front-end & 3D rendering
+- **TensorFlow.js + fingerpose** – hand pose detection
+- **Flask** – back-end API server
+
+---
+
+## 🛠️ Future Improvements
+
+- Add custom gestures via UI
+- Integrate with VR/AR input devices
+- Improve finger animation blending
+- Use real camera instead of 3D render as input
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.---
+
+### 🙏 Credits
+
+- Gesture recognition base implementation adapted from [NickNochnack's Gesture Recognition repository](https://github.com/nicknochnack/GestureRecognition)
+- 3D hand model by [TurboSquid: Low Poly Man Hand (3D Model)](https://www.turbosquid.com/3d-models/3d-low-poly-man-hand-2180828)
