@@ -36,10 +36,12 @@ export const runHandposeDetection = (
           const top = gesture.gestures.reduce((a, b) =>
             a.confidence > b.confidence ? a : b
           );
-          console.log("Gesture:", top.name);
+          // console.log("Gesture:", top.name);
           setEmoji(top.name);
           setPoseData(gesture.poseData);
         }
+      } else {
+        // console.log("No hand detected");
       }
 
       detectionId = requestAnimationFrame(detect);

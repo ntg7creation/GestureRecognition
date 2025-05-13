@@ -6,7 +6,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+/* justify-content: center; */
   align-items: center;
 }
 
@@ -14,14 +14,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+margin-top: 5vh;
   position: relative;
 }
 
 .canvas-container {
   position: relative;
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 10px #888;
+width: 90vw;
+    /* 90% of viewport width */
+    aspect-ratio: 4 / 3;
+    /* maintain 4:3 aspect ratio */
+    /* max-width: 1280px; */
+    margin: 0 auto;
 }
+
 
 .canvas-container canvas {
   display: block;
@@ -30,10 +36,18 @@
   left: 0;
 }
 
+.emoji-display {
+    position: absolute;
+    left: 95%;
+    top: 20px;
+    transform: translateX(-50%);
+    font-size: 80px;
+    z-index: 100;
+}
 .overlay-panel {
   position: absolute;
-  top: 100px;
-  right: 20px;
+top: 150px;
+    left: 80%;
   font-size: 26px;
   text-align: right;
   z-index: 100;
@@ -41,13 +55,4 @@
   padding: 10px;
   border-radius: 8px;
   color: white;
-}
-
-.emoji-display {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 20px;
-  font-size: 80px;
-  z-index: 100;
 }

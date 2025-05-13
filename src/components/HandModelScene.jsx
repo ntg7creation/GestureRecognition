@@ -16,6 +16,7 @@ function HandModelScene() {
     const threeCanvasRef = useRef(null);
     const detectCanvasRef = useRef(null);
 
+
     useEffect(() => {
         const cleanupThree = initThreeScene(threeCanvasRef.current, CANVAS_WIDTH, CANVAS_HEIGHT);
         const cleanupTF = runHandposeDetection(threeCanvasRef, detectCanvasRef, CANVAS_WIDTH, CANVAS_HEIGHT, setEmoji,
@@ -38,9 +39,21 @@ function HandModelScene() {
                     }}
                 >
                     <canvas ref={threeCanvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
-                    <canvas ref={detectCanvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
+                    <canvas ref={detectCanvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        zIndex: 10,
+                        pointerEvents: "none", // ✅ allows OrbitControls and mouse input to pass through
+                    }} />
                 </div>
-                <HandDetectionOverlay emoji={emoji} poseData={poseData} />
+                <HandDetectionOverlay emoji={emoji} poseData={poseData} style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    zIndex: 10,
+                    pointerEvents: "none", // ✅ allows OrbitControls and mouse input to pass through
+                }} />
             </header>
         </div>
     );

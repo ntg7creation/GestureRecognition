@@ -51,35 +51,13 @@ const HandDetectionOverlay = ({ emoji, poseData }) => {
     return (
         <>
             {emoji && (
-                <div
-                    style={{
-                        position: "absolute",
-                        left: "95%",
-                        transform: "translateX(-50%)",
-                        top: 20,
-                        fontSize: 80,
-                        zIndex: 100,
-                    }}
-                >
+                   <div className="emoji-display">
                     {emojiMap[emoji] || "❓"}
                 </div>
             )}
 
             {poseData.length > 0 && (
-                <div
-                    style={{
-                        position: "absolute",
-                        top: 150,
-                        left: "85%",
-                        fontSize: 26,
-                        textAlign: "right",
-                        zIndex: 100,
-                        background: "rgba(0,0,0,0.6)",
-                        padding: 10,
-                        borderRadius: 8,
-                        color: "white",
-                    }}
-                >
+                   <div className="overlay-panel">
                     {poseData.map((finger, i) => (
                         <div key={i}>
                             {finger[0]}: {getCurlEmoji(finger[1])} {getDirectionEmoji(finger[2])}
