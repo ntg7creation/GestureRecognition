@@ -42,16 +42,10 @@ server/
 
 ### 1. Clone & Install
 
-<<<<<<< HEAD
 ```
 git clone https://github.com/ntg7creation/GestureRecognition/tree/python_server
 cd your-repo
-=======
->>>>>>> origin/python_server
 ```
-git clone https://github.com/ntg7creation/GestureRecognition/tree/python_server
-cd your-repo
-```bash
 
 bash
 
