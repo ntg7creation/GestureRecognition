@@ -2,9 +2,9 @@ import * as handpose from "@tensorflow-models/handpose";
 import * as fp from "fingerpose";
 import React, { useEffect, useRef, useState } from "react";
 
+import { customGestures } from "../customGestures";
+import { drawHand } from "../utils/utilities";
 import "./App.css";
-import { customGestures } from "./customGestures";
-import { drawHand } from "./utilities";
 
 function App2() {
   const canvasRef = useRef(null); // Main canvas shown to user

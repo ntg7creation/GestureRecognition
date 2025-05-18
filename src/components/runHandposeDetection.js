@@ -1,7 +1,7 @@
 import * as handpose from "@tensorflow-models/handpose";
 import * as fp from "fingerpose";
 import { customGestures } from "../customGestures";
-import { drawHand } from "../utilities";
+import { drawHand } from "../utils/utilities";
 
 let detectionId = null;
 
