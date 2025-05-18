@@ -1,25 +1,20 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from python.model import get_rotations  # ⬅️ import your model logic
 
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin requests from your JS app
+CORS(app)
 
-@app.route('/api/check', methods=['POST'])
+@app.route("/api/check", methods=["POST"])
 def check_input():
     data = request.json
-    text = data.get('text', '')
+    text = data.get("text", "")
+    print(f"[Server] Received text: {text}")
 
-    print(f"[Server] Received text: '{text}'")  # ✅ print received message
+    rotations = get_rotations(text)
+    print("[Server] Sending rotations:", rotations)
+    return jsonify({"response": rotations})
 
-    # Dummy logic
-    if text.lower() in ['hello', 'yes', 'ok']:
-        result = 'yes'
-    else:
-        result = 'no'
-
-    print(f"[Server] Sending response: '{result}'")  # ✅ print before sending
-    return jsonify({'response': result})
-
-if __name__ == '__main__':
-    print("[Server] Flask server starting on http://localhost:5000")  # ✅ print on start
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    print("[Server] Flask server starting on http://localhost:5000")
+    app.run(host="0.0.0.0", port=5000)
