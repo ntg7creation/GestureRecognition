@@ -4,10 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 // App.js
 import { imageFeed as ImageFeed, useImageStream } from "./StreamIntake"; // rename imageFeed to ImageFeed
 
+import { detectGesture } from "../GestureDetection";
+import { VisualOutput } from "../utils/VisualOutput";
 import "./App.css";
-import { detectGesture } from "./GestureDetection";
 import { CameraFeed, useCameraStream } from "./StreamIntake";
-import { VisualOutput } from "./VisualOutput";
 
 function App() {
   const { webcamRef, deviceId } = useCameraStream();
@@ -23,9 +23,6 @@ function App() {
       detectGesture(net, webcamRef, canvasRef, setEmoji, setPoseData);
     }, 100);
   };
-
-
-
 
   useEffect(() => {
     runHandpose();
