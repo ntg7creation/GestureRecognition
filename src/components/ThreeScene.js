@@ -5,6 +5,25 @@ import { FingerController } from "./FingerController"; // <== external control
 
 let animationId = null;
 let modelRoot = null;
+const trackedBoneNames = [
+  "Bone002",
+  "Bone003",
+  "Bone004", // Thumb
+  "Bone013",
+  "Bone014",
+  "Bone015", // Index
+  "Bone016",
+  "Bone017",
+  "Bone018", // Middle
+  "Bone019",
+  "Bone020",
+  "Bone021", // Ring
+  "Bone022",
+  "Bone023",
+  "Bone024", // Pinky
+];
+
+const trackedBones = {};
 
 const boneMap = {
   Bone: "wrist",
@@ -104,6 +123,7 @@ export function initThreeScene(canvas, width, height) {
             if (bone) {
               animateBones.push(bone);
               fingerController.register(bone);
+              trackedBones[boneName] = bone; // 🆕 track it
             }
           });
       }
@@ -127,8 +147,16 @@ export function initThreeScene(canvas, width, height) {
 
   animate();
 
-  return () => {
-    cancelAnimationFrame(animationId);
-    renderer.dispose();
+  return {
+    cleanup: () => {
+      cancelAnimationFrame(animationId);
+      renderer.dispose();
+    },
+    getCurrentRotations: () => {
+      return trackedBoneNames.map((name) => {
+        const bone = trackedBones[name];
+        return bone ? bone.rotation.z : 0;
+      });
+    },
   };
 }
