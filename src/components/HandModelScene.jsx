@@ -24,6 +24,9 @@ function HandModelScene() {
     const threeCanvasRef = useRef(null);
     const detectCanvasRef = useRef(null);
 
+    const threeSceneRef = useRef(null);  // 🆕 store API returned from initThreeScene
+
+
     let getCurrentRotations = null;
 
     const [inputText, setInputText] = useState("");
@@ -31,6 +34,7 @@ function HandModelScene() {
 
     const handleSubmit = () => {
         if (!inputText.trim()) return;
+
         fetch("http://localhost:5000/api/check", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -38,22 +42,35 @@ function HandModelScene() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log("Server replied:", data.response);
-                setResponse(data.response);
+                const vec = data.response;
+
+                // Display the response
+                setResponse(vec);
+
+                // Set rotation vector on the 3D hand
+                if (threeSceneRef.current && Array.isArray(vec)) {
+                    threeSceneRef.current.setRotationVector(vec);
+                }
             })
             .catch((err) => {
-                console.error("Error contacting server:", err);
+                console.error("Server error:", err);
                 setResponse("Error");
             });
     };
 
 
+
     useEffect(() => {
-        const { cleanup, getCurrentRotations: getRot } = initThreeScene(
+        const sceneAPI = initThreeScene(
             threeCanvasRef.current,
             CANVAS_WIDTH,
             CANVAS_HEIGHT
         );
+
+        threeSceneRef.current = sceneAPI;
+
+        const cleanup = sceneAPI.cleanup;
+        const getRot = sceneAPI.getCurrentRotations;
 
         getCurrentRotationsRef.current = getRot;
 
@@ -98,9 +115,9 @@ function HandModelScene() {
                 setDataset((prev) => [...prev, sample]);
                 console.log("Stable sample saved:", sample);
 
-                sendTextToServer(emoji).then((response) => {
-                    // console.log("Server replied:", response);
-                });
+                // sendTextToServer(emoji).then((response) => {
+                //     // console.log("Server replied:", response);
+                // });
             }, 500); // <-- wait 500ms before saving
         }
     }, [emoji, poseData]);

@@ -1,10 +1,13 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { FingerController } from "./FingerController"; // <== external control
+import { AIController } from "./AIController";
+import { FingerController } from "./FingerController";
 
 let animationId = null;
 let modelRoot = null;
+let aiController = null;
+
 const trackedBoneNames = [
   "Bone002",
   "Bone003",
@@ -22,52 +25,6 @@ const trackedBoneNames = [
   "Bone023",
   "Bone024", // Pinky
 ];
-
-const trackedBones = {};
-
-const boneMap = {
-  Bone: "wrist",
-  Bone001: "palm_center",
-  Bone026: "forearm_root",
-
-  // 🟥 Thumb
-  Bone002: "thumb_metacarpal",
-  Bone003: "thumb_proximal",
-  Bone004: "thumb_distal",
-
-  // 🟩 Index
-  Bone013: "index_MCP",
-  Bone014: "index_pip",
-  Bone015: "index_dip",
-
-  // 🟦 Middle
-  Bone016: "middle_MCP",
-  Bone017: "middle_pip",
-  Bone018: "middle_dip",
-
-  // 🟨 Ring
-  Bone019: "ring_MCP",
-  Bone020: "ring_pip",
-  Bone021: "ring_dip",
-
-  // 🟪 Pinky
-  Bone022: "pinky_MCP",
-  Bone023: "pinky_pip",
-  Bone024: "pinky_dip",
-
-  // 🟦 Palm & helpers
-  Bone005: "palm_knuckle",
-  Bone006: "palm_knuckle",
-  Bone007: "palm_knuckle",
-  Bone008: "palm_knuckle",
-  Bone009: "palm_paw",
-  Bone010: "palm_paw",
-  Bone011: "palm_paw",
-  Bone012: "palm_paw",
-  Bone025: "palm_helper",
-};
-
-const animateBones = [];
 
 export function initThreeScene(canvas, width, height) {
   const scene = new THREE.Scene();
@@ -116,14 +73,18 @@ export function initThreeScene(canvas, width, height) {
       const skeleton = skinnedMesh?.skeleton;
 
       if (skeleton) {
+        // Register bones for keyboard and AI control
+        const boneRefs = trackedBoneNames.map((name) =>
+          skeleton.getBoneByName(name)
+        );
+        aiController = new AIController(boneRefs);
+
         Object.values(fingerKeys)
           .flat()
           .forEach((boneName) => {
             const bone = skeleton.getBoneByName(boneName);
             if (bone) {
-              animateBones.push(bone);
               fingerController.register(bone);
-              trackedBones[boneName] = bone; // 🆕 track it
             }
           });
       }
@@ -137,10 +98,11 @@ export function initThreeScene(canvas, width, height) {
   const animate = () => {
     animationId = requestAnimationFrame(animate);
 
-    animateBones.forEach((bone) => {
-      fingerController.update(bone);
-    });
+    if (aiController) {
+      aiController.update(); // smooth AI-controlled rotation
+    }
 
+    // fingerController.update(...) is commented out intentionally
     controls.update();
     renderer.render(scene, camera);
   };
@@ -152,11 +114,8 @@ export function initThreeScene(canvas, width, height) {
       cancelAnimationFrame(animationId);
       renderer.dispose();
     },
-    getCurrentRotations: () => {
-      return trackedBoneNames.map((name) => {
-        const bone = trackedBones[name];
-        return bone ? bone.rotation.z : 0;
-      });
+    setRotationVector: (vec) => {
+      if (aiController) aiController.setTarget(vec);
     },
   };
 }
