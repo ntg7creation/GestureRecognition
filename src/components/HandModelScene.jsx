@@ -26,6 +26,28 @@ function HandModelScene() {
 
     let getCurrentRotations = null;
 
+    const [inputText, setInputText] = useState("");
+    const [response, setResponse] = useState(null);
+
+    const handleSubmit = () => {
+        if (!inputText.trim()) return;
+        fetch("http://localhost:5000/api/check", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: inputText })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Server replied:", data.response);
+                setResponse(data.response);
+            })
+            .catch((err) => {
+                console.error("Error contacting server:", err);
+                setResponse("Error");
+            });
+    };
+
+
     useEffect(() => {
         const { cleanup, getCurrentRotations: getRot } = initThreeScene(
             threeCanvasRef.current,
@@ -111,6 +133,30 @@ function HandModelScene() {
                   />
               </div>
               <HandDetectionOverlay emoji={emoji} poseData={poseData} />
+                <div style={{ marginTop: "20px", textAlign: "center" }}>
+                    <input
+                        type="text"
+                        placeholder="Enter gesture name (e.g. 'thumbs_up')"
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") handleSubmit();
+                        }}
+                        style={{ width: "300px", padding: "8px", fontSize: "16px" }}
+                    />
+                    <button onClick={handleSubmit} style={{ marginLeft: "10px", padding: "8px 12px" }}>
+                        Predict
+                    </button>
+                    {response && (
+                        <div style={{ marginTop: "10px", color: "#0f0" }}>
+                            Rotation Vector:
+                            <pre style={{ textAlign: "left", fontSize: "14px", color: "white", background: "#222", padding: "10px" }}>
+                                {JSON.stringify(response, null, 2)}
+                            </pre>
+                        </div>
+                    )}
+                </div>
+
           </header>
       </div>
   );
