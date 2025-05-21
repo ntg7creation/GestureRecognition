@@ -1,7 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../App3.css";
-import { sendTextToServer } from "./api";
+import { sendTextAndGetRotationVector } from "./api"; // add this
+import HandCanvasContainer from "./HandCanvasContainer";
+
+
+/* ----------------------------- jsx components ----------------------------- */
 import HandDetectionOverlay from "./HandDetectionOverlay";
+import TextToRotationInput from "./TextToRotationInput";
+
 import { curlToRotation } from "./rotationMap";
 import { runHandposeDetection } from "./runHandposeDetection";
 import { initThreeScene } from "./ThreeScene";
@@ -29,37 +35,25 @@ function HandModelScene() {
 
     let getCurrentRotations = null;
 
-    const [inputText, setInputText] = useState("");
+    const [inputText, setInputText] = useState(""); // the textbox in the web
     const [response, setResponse] = useState(null);
 
-    const handleSubmit = () => {
+
+    /* --------------------------- talking with server -------------------------- */
+    const handleSubmit = async () => {
         if (!inputText.trim()) return;
 
-        fetch("http://localhost:5000/api/check", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: inputText })
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                const vec = data.response;
+        const vec = await sendTextAndGetRotationVector(inputText);
 
-                // Display the response
-                setResponse(vec);
+        setResponse(vec);
 
-                // Set rotation vector on the 3D hand
-                if (threeSceneRef.current && Array.isArray(vec)) {
-                    threeSceneRef.current.setRotationVector(vec);
-                }
-            })
-            .catch((err) => {
-                console.error("Server error:", err);
-                setResponse("Error");
-            });
+        if (threeSceneRef.current && Array.isArray(vec)) {
+            threeSceneRef.current.setRotationVector(vec);
+        }
     };
 
 
-
+    /* ------------------------------- Init scene ------------------------------- */
     useEffect(() => {
         const sceneAPI = initThreeScene(
             threeCanvasRef.current,
@@ -89,8 +83,11 @@ function HandModelScene() {
         };
     }, []);
 
-
+    /* ----------- data saver - saves the data when a gesture changes -  currently off  ----------- */
     useEffect(() => {
+        const ON_OFF = false;
+        if (!ON_OFF) return;
+
         if (!emoji || poseData.length !== 5) return;
 
         if (emoji !== lastGestureRef.current) {
@@ -122,8 +119,10 @@ function HandModelScene() {
         }
     }, [emoji, poseData]);
 
-    // 🔽 Press 'd' to download dataset
+    /* -------------------- 🔽 Press 'd' to download dataset - currently off -------------------- */
     useEffect(() => {
+        const ON_OFF = false;
+        if (!ON_OFF) return;
         const handler = (e) => {
             if (e.key === "d") {
                 const blob = new Blob([JSON.stringify(dataset, null, 2)], {
@@ -143,39 +142,25 @@ function HandModelScene() {
     return (
         <div className="App3">
             <header className="App3-header">
-                <div className="canvas-container" style={{ width: `${CANVAS_WIDTH}px`, height: `${CANVAS_HEIGHT}px` }}>
-                    <canvas ref={threeCanvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
-                    <canvas ref={detectCanvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT}
-                        style={{ position: "absolute", top: 0, left: 0, zIndex: 10, pointerEvents: "none" }}
-                  />
-              </div>
-              <HandDetectionOverlay emoji={emoji} poseData={poseData} />
-                <div style={{ marginTop: "20px", textAlign: "center" }}>
-                    <input
-                        type="text"
-                        placeholder="Enter gesture name (e.g. 'thumbs_up')"
-                        value={inputText}
-                        onChange={(e) => setInputText(e.target.value)}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") handleSubmit();
-                        }}
-                        style={{ width: "300px", padding: "8px", fontSize: "16px" }}
-                    />
-                    <button onClick={handleSubmit} style={{ marginLeft: "10px", padding: "8px 12px" }}>
-                        Predict
-                    </button>
-                    {response && (
-                        <div style={{ marginTop: "10px", color: "#0f0" }}>
-                            Rotation Vector:
-                            <pre style={{ textAlign: "left", fontSize: "14px", color: "white", background: "#222", padding: "10px" }}>
-                                {JSON.stringify(response, null, 2)}
-                            </pre>
-                        </div>
-                    )}
-                </div>
+                <HandCanvasContainer
+                    threeCanvasRef={threeCanvasRef}
+                    detectCanvasRef={detectCanvasRef}
+                    width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT}
+                />
 
-          </header>
-      </div>
+                <HandDetectionOverlay emoji={emoji} poseData={poseData} />
+
+                <TextToRotationInput
+                    inputText={inputText}
+                    setInputText={setInputText}
+                    onSubmit={handleSubmit}
+                    response={response}
+                />
+
+
+            </header>
+        </div>
   );
 }
 
