@@ -6,6 +6,7 @@ import HandCanvasContainer from "./HandCanvasContainer";
 
 /* ----------------------------- jsx components ----------------------------- */
 import HandDetectionOverlay from "./HandDetectionOverlay";
+import { runMediaPipeDetection } from "./runMediaPipeDetection";
 import TextToRotationInput from "./TextToRotationInput";
 
 import { curlToRotation } from "./rotationMap";
@@ -21,6 +22,8 @@ function HandModelScene() {
     const [dataset, setDataset] = useState([]);
 
     const getCurrentRotationsRef = useRef(null);
+    // const webcamRef = useRef(null);
+    // const [useWebcam, setUseWebcam] = useState(true); // toggle mode
 
 
     // 🆕 Save and send only when gesture changes
@@ -60,28 +63,44 @@ function HandModelScene() {
             CANVAS_WIDTH,
             CANVAS_HEIGHT
         );
-
         threeSceneRef.current = sceneAPI;
+        const cleanupThree = sceneAPI.cleanup;
 
-        const cleanup = sceneAPI.cleanup;
-        const getRot = sceneAPI.getCurrentRotations;
+        const startDetection = async () => {
+            // if (useWebcam) {
+            //     // Enable webcam
+            //     console.log("use webcam")
+            //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            //     webcamRef.current.srcObject = stream;
+            //     webcamRef.current.onloadeddata = async () => {
+            //         const stop = await runMediaPipeDetection(
+            //             webcamRef.current,
+            //             detectCanvasRef.current,
+            //             setEmoji,
+            //             setPoseData
+            //         );
+            //         cleanupTFRef.current = stop;
+            //     };
+            // } else {
+            const stop = await runMediaPipeDetection(
+                threeCanvasRef.current,
+                detectCanvasRef.current,
+                setEmoji,
+                setPoseData
+            );
+            cleanupTFRef.current = stop;
+            // }
+        };
 
-        getCurrentRotationsRef.current = getRot;
-
-        const cleanupTF = runHandposeDetection(
-            threeCanvasRef,
-            detectCanvasRef,
-            CANVAS_WIDTH,
-            CANVAS_HEIGHT,
-            setEmoji,
-            setPoseData
-        );
+        const cleanupTFRef = { current: () => { } };
+        startDetection();
 
         return () => {
-            cleanup();
-            cleanupTF();
+            cleanupThree();
+            cleanupTFRef.current();
         };
     }, []);
+
 
     /* ----------- data saver - saves the data when a gesture changes -  currently off  ----------- */
     useEffect(() => {
@@ -158,7 +177,18 @@ function HandModelScene() {
                     response={response}
                 />
 
-
+                {/* <video
+                    ref={webcamRef}
+                    style={{ display: useWebcam ? "block" : "none" }}
+                    width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT}
+                    autoPlay
+                    muted
+                    playsInline
+                /> */}
+                {/* <button onClick={() => setUseWebcam((prev) => !prev)}>
+                    {useWebcam ? "Use 3D Model" : "Use Webcam"}
+                </button> */}
             </header>
         </div>
   );

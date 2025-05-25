@@ -1,7 +1,9 @@
 import * as THREE from "three";
+import { MeshStandardMaterial, TextureLoader } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AIController } from "./AIController";
+
 import { FingerController } from "./FingerController";
 
 let animationId = null;
@@ -29,7 +31,8 @@ const trackedBoneNames = [
 export function initThreeScene(canvas, width, height) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-  camera.position.z = 16;
+  camera.position.z = 25;
+  scene.background = new THREE.Color(0xffffff); // white
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -68,11 +71,43 @@ export function initThreeScene(canvas, width, height) {
     (gltf) => {
       console.log("GLB loaded");
       const model = gltf.scene;
+      model.traverse((child) => {
+        if (child.isMesh) {
+          console.log("Mesh:", child.name, "Material:", child.material);
+          if (child.material.map) {
+            console.log("Texture map:", child.material.map);
+          } else {
+            console.warn("No texture map on", child.name);
+          }
+        }
+      });
+
+      const textureLoader = new TextureLoader();
+      const baseColorMap = textureLoader.load("/models/Arm_Base_color.png");
+      const normalMap = textureLoader.load("/models/Arm_Normal.png");
+      const roughnessMap = textureLoader.load("/models/Arm_Roughness.png");
+
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.material = new MeshStandardMaterial({
+            map: baseColorMap,
+            normalMap: normalMap,
+            roughnessMap: roughnessMap,
+            metalness: 0.5, // optional tweak
+          });
+          child.material.needsUpdate = true;
+        }
+      });
+
       modelRoot = model;
       modelRoot.position.y = -6.5;
-      model.rotation.y = (Math.PI * 2.2) / 4;
+      model.rotation.y = (Math.PI * 6.2) / 4;
 
       const skinnedMesh = model.getObjectByProperty("type", "SkinnedMesh");
+      if (!skinnedMesh) {
+        console.warn("SkinnedMesh not found in GLB");
+      }
+
       const skeleton = skinnedMesh?.skeleton;
 
       if (skeleton) {
