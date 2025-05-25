@@ -23,14 +23,13 @@ const jointLimits = {
       Bone004: [0, Math.PI * 0.44],  // thumb_IP ~80°
     };
 
+
+
 export class FingerController {
   constructor(keyToBonesMap) {
     this.keyToBones = keyToBonesMap; // { e: [boneNames] }
     this.rotationState = {}; // { Bone016: 0, Bone017: 0, ... }
     this.keysPressed = new Set();
-
- 
-
 
     window.addEventListener("keydown", (e) => {
       this.keysPressed.add(e.key.toLowerCase());
@@ -56,7 +55,7 @@ export class FingerController {
     if (shouldMove) {
       this.rotationState[name] = Math.min(this.rotationState[name] + 0.02, max);
     } else {
-      this.rotationState[name] = Math.max(this.rotationState[name] - 0.02, min);
+      // this.rotationState[name] = Math.max(this.rotationState[name] - 0.02, min);
     }
 
     bone.rotation.z = this.rotationState[name];

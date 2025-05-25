@@ -1,0 +1,8 @@
+Python Server:
+.\venv\Scripts\Activate.ps1
+pip install - if needed
+ cd src
+python server.py
+
+JavaScript:
+npm start

@@ -37,10 +37,12 @@ export function initThreeScene(canvas, width, height) {
   });
   renderer.setSize(width, height);
 
+  /* --------------------------- add orbit controls --------------------------- */
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
 
+  /* ------------------------------- add lights ------------------------------- */
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(0, 2, 2);
   scene.add(light);
@@ -49,16 +51,17 @@ export function initThreeScene(canvas, width, height) {
   backLight.position.set(-2, -1, -3);
   scene.add(backLight);
 
-  const fingerKeys = {
+  /* -------------------------- add finger controllers ------------------------ */
+  const fingerKeysDown = {
     q: ["Bone022", "Bone023", "Bone024"], // pinky
     w: ["Bone019", "Bone020", "Bone021"], // ring
     r: ["Bone013", "Bone014", "Bone015"], // index
     e: ["Bone016", "Bone017", "Bone018"], // middle
     g: ["Bone003", "Bone004"], // thumb
   };
+  const fingerController = new FingerController(fingerKeysDown);
 
-  const fingerController = new FingerController(fingerKeys);
-
+  /* -------------------------------- Load Mesh ------------------------------- */
   const loader = new GLTFLoader();
   loader.load(
     "/models/Arm3.glb",
@@ -67,7 +70,7 @@ export function initThreeScene(canvas, width, height) {
       const model = gltf.scene;
       modelRoot = model;
       modelRoot.position.y = -6.5;
-      model.rotation.y = (Math.PI * 3) / 4;
+      model.rotation.y = (Math.PI * 2.2) / 4;
 
       const skinnedMesh = model.getObjectByProperty("type", "SkinnedMesh");
       const skeleton = skinnedMesh?.skeleton;
@@ -79,7 +82,7 @@ export function initThreeScene(canvas, width, height) {
         );
         aiController = new AIController(boneRefs);
 
-        Object.values(fingerKeys)
+        Object.values(fingerKeysDown)
           .flat()
           .forEach((boneName) => {
             const bone = skeleton.getBoneByName(boneName);
@@ -95,6 +98,7 @@ export function initThreeScene(canvas, width, height) {
     (error) => console.error("GLB load error:", error)
   );
 
+  /* ---------------------------- Animate function ---------------------------- */
   const animate = () => {
     animationId = requestAnimationFrame(animate);
 
@@ -102,7 +106,10 @@ export function initThreeScene(canvas, width, height) {
       aiController.update(); // smooth AI-controlled rotation
     }
 
-    // fingerController.update(...) is commented out intentionally
+    if (modelRoot) {
+      // modelRoot.rotation.y += 0.001;
+    }
+    // fingerControllerDown.update(...) is commented out intentionally
     controls.update();
     renderer.render(scene, camera);
   };

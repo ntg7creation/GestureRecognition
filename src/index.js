@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import App3 from "./App3";
 import "./index.css";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorker from "./utils/serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>{<App3 />}</React.StrictMode>,
@@ -13,4 +13,5 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
+serviceWorker.register();
