@@ -8,6 +8,8 @@ import { FingerController } from "./FingerController";
 let animationId = null;
 let modelRoot = null;
 let aiController = null;
+let fingerController = null;
+let controlledBones = [];
 
 const trackedBoneNames = [
   "Bone002",
@@ -53,14 +55,22 @@ export function initThreeScene(canvas, width, height) {
   scene.add(backLight);
 
   /* -------------------------- add finger controllers ------------------------ */
-  const fingerKeysDown = {
-    q: ["Bone022", "Bone023", "Bone024"], // pinky
-    w: ["Bone019", "Bone020", "Bone021"], // ring
-    r: ["Bone013", "Bone014", "Bone015"], // index
-    e: ["Bone016", "Bone017", "Bone018"], // middle
-    g: ["Bone003", "Bone004"], // thumb
+  const fingerKeyMap = {
+    q: ["Bone022", "Bone023", "Bone024"], // pinky down
+    _a: ["Bone022", "Bone023", "Bone024"], // pinky up
+
+    w: ["Bone019", "Bone020", "Bone021"], // ring down
+    _s: ["Bone019", "Bone020", "Bone021"], // ring up
+
+    e: ["Bone016", "Bone017", "Bone018"], // middle down
+    _d: ["Bone016", "Bone017", "Bone018"], // middle up
+
+    r: ["Bone013", "Bone014", "Bone015"], // index down
+    _f: ["Bone013", "Bone014", "Bone015"], // index up
+
+    g: ["Bone003", "Bone004"], // thumb down
+    _b: ["Bone003", "Bone004"], // thumb up
   };
-  const fingerController = new FingerController(fingerKeysDown);
 
   /* -------------------------------- Load Mesh ------------------------------- */
   const loader = new GLTFLoader();
@@ -69,16 +79,16 @@ export function initThreeScene(canvas, width, height) {
     (gltf) => {
       console.log("GLB loaded");
       const model = gltf.scene;
-      model.traverse((child) => {
-        if (child.isMesh) {
-          console.log("Mesh:", child.name, "Material:", child.material);
-          if (child.material.map) {
-            console.log("Texture map:", child.material.map);
-          } else {
-            console.warn("No texture map on", child.name);
-          }
-        }
-      });
+      // model.traverse((child) => {
+      //   if (child.isMesh) {
+      //     console.log("Mesh:", child.name, "Material:", child.material);
+      //     if (child.material.map) {
+      //       console.log("Texture map:", child.material.map);
+      //     } else {
+      //       console.warn("No texture map on", child.name);
+      //     }
+      //   }
+      // });
 
       modelRoot = model;
       modelRoot.position.y = -6.5;
@@ -89,8 +99,9 @@ export function initThreeScene(canvas, width, height) {
         console.warn("SkinnedMesh not found in GLB");
       }
 
+      console.log(skinnedMesh);
       const skeleton = skinnedMesh?.skeleton;
-
+      console.log(skeleton);
       if (skeleton) {
         // Register bones for keyboard and AI control
         const boneRefs = trackedBoneNames.map((name) =>
@@ -98,14 +109,8 @@ export function initThreeScene(canvas, width, height) {
         );
         aiController = new AIController(boneRefs);
 
-        Object.values(fingerKeysDown)
-          .flat()
-          .forEach((boneName) => {
-            const bone = skeleton.getBoneByName(boneName);
-            if (bone) {
-              fingerController.register(bone);
-            }
-          });
+        fingerController = new FingerController(fingerKeyMap, boneRefs);
+        // console.log(fingerController);
       }
 
       scene.add(model);
@@ -119,13 +124,12 @@ export function initThreeScene(canvas, width, height) {
     animationId = requestAnimationFrame(animate);
 
     if (aiController) {
-      aiController.update(); // smooth AI-controlled rotation
+      // aiController.update(); // smooth AI-controlled rotation
     }
-
-    if (modelRoot) {
-      // modelRoot.rotation.y += 0.001;
+    if (fingerController) {
+      console.log("test");
+      fingerController.update();
     }
-    // fingerControllerDown.update(...) is commented out intentionally
     controls.update();
     renderer.render(scene, camera);
   };

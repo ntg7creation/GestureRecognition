@@ -1,5 +1,7 @@
 // runMediaPipeDetection.js
 import { FilesetResolver, HandLandmarker } from "@mediapipe/tasks-vision";
+import * as fp from "fingerpose";
+import { customGestures } from "../customGestures";
 
 let detector = null;
 let animationId = null;
@@ -16,8 +18,7 @@ function drawLandmarksSimple(ctx, landmarks, color = "#FF0000") {
 export const runMediaPipeDetection = async (
   inputElement,
   canvasElement,
-  setEmoji,
-  setPoseData
+  setLandmarkData
 ) => {
   const vision = await FilesetResolver.forVisionTasks(
     "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
@@ -52,8 +53,8 @@ export const runMediaPipeDetection = async (
         drawLandmarksSimple(ctx, scaled);
       }
 
-      setEmoji("🖐️");
-      setPoseData([]);
+      /* --------------------- we return the landmark results --------------------- */
+      setLandmarkData(results.landmarks[0]); // << store actual landmark points
     }
 
     animationId = requestAnimationFrame(detect);

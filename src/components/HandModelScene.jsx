@@ -5,12 +5,11 @@ import HandCanvasContainer from "./HandCanvasContainer";
 
 
 /* ----------------------------- jsx components ----------------------------- */
+import { detectGesture } from "../GestureDetection";
 import HandDetectionOverlay from "./HandDetectionOverlay";
+import { runHandposeDetection } from "./runHandposeDetection";
 import { runMediaPipeDetection } from "./runMediaPipeDetection";
 import TextToRotationInput from "./TextToRotationInput";
-
-import { curlToRotation } from "./rotationMap";
-import { runHandposeDetection } from "./runHandposeDetection";
 import { initThreeScene } from "./ThreeScene";
 
 export const CANVAS_WIDTH = 1280;
@@ -18,8 +17,9 @@ export const CANVAS_HEIGHT = 960;
 
 function HandModelScene() {
     const [emoji, setEmoji] = useState(null);
-    const [poseData, setPoseData] = useState([]);
+    const [landmarkData, setLandmarkData] = useState([]);
     const [dataset, setDataset] = useState([]);
+    const [poseData, setPoseData] = useState([]);
 
     const getCurrentRotationsRef = useRef(null);
     // const webcamRef = useRef(null);
@@ -85,8 +85,7 @@ function HandModelScene() {
             const stop = await runMediaPipeDetection(
                 threeCanvasRef.current,
                 detectCanvasRef.current,
-                setEmoji,
-                setPoseData
+                setLandmarkData
             );
             cleanupTFRef.current = stop;
             // }
@@ -101,13 +100,31 @@ function HandModelScene() {
         };
     }, []);
 
+    /* ---------------------------- classify gesture ---------------------------- */
+    useEffect(() => {
+        //TODO not sure we need this if
+        if (landmarkData.length === 21) { // 21 landmarks expected 
+
+            /* ------------------- adopte scale to canvas for figerpose ------------------ */
+            const canvasWidth = CANVAS_WIDTH;
+            const canvasHeight = CANVAS_HEIGHT;
+
+            const scaled = landmarkData.map((pt) => ({
+                x: pt.x * canvasWidth,
+                y: pt.y * canvasHeight,
+                z: pt.z * canvasWidth, // or some constant scale
+            }));
+
+            detectGesture(scaled, setEmoji, setPoseData);
+        }
+    }, [landmarkData]);
 
     /* ----------- data saver - saves the data when a gesture changes -  currently off  ----------- */
     useEffect(() => {
         const ON_OFF = false;
         if (!ON_OFF) return;
 
-        if (!emoji || poseData.length !== 5) return;
+        if (!emoji || landmarkData.length !== 5) return;
 
         if (emoji !== lastGestureRef.current) {
             // New gesture started — reset timer
@@ -136,7 +153,7 @@ function HandModelScene() {
                 // });
             }, 500); // <-- wait 500ms before saving
         }
-    }, [emoji, poseData]);
+    }, [emoji, landmarkData]);
 
     /* -------------------- 🔽 Press 'd' to download dataset - currently off -------------------- */
     useEffect(() => {
