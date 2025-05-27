@@ -1,0 +1,166 @@
+[
+  {
+    "text": "thumbs up",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "thumbs down",
+    "label": "fist"
+  },
+  {
+    "text": "peace",
+    "label": "victory"
+  },
+  {
+    "text": "closed hand",
+    "label": "fist"
+  },
+  {
+    "text": "open",
+    "label": "open_hand"
+  },
+  {
+    "text": "stop",
+    "label": "open_hand"
+  },
+  {
+    "text": "go",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "halt",
+    "label": "open_hand"
+  },
+  {
+    "text": "okay",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "number one",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "number two",
+    "label": "victory"
+  },
+  {
+    "text": "number five",
+    "label": "open_hand"
+  },
+  {
+    "text": "high five",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench",
+    "label": "fist"
+  },
+  {
+    "text": "release",
+    "label": "open_hand"
+  },
+  {
+    "text": "power",
+    "label": "fist"
+  },
+  {
+    "text": "hello",
+    "label": "open_hand"
+  },
+  {
+    "text": "goodbye",
+    "label": "open_hand"
+  },
+  {
+    "text": "victory",
+    "label": "victory"
+  },
+  {
+    "text": "approve",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny",
+    "label": "fist"
+  },
+  {
+    "text": "yes",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no",
+    "label": "fist"
+  },
+  {
+    "text": "peace sign",
+    "label": "victory"
+  },
+  {
+    "text": "salute",
+    "label": "open_hand"
+  },
+  {
+    "text": "attention",
+    "label": "open_hand"
+  },
+  {
+    "text": "relax",
+    "label": "open_hand"
+  },
+  {
+    "text": "command",
+    "label": "fist"
+  },
+  {
+    "text": "signal",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "display",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave",
+    "label": "open_hand"
+  },
+  {
+    "text": "hold",
+    "label": "fist"
+  },
+  {
+    "text": "ready",
+    "label": "fist"
+  },
+  {
+    "text": "engage",
+    "label": "fist"
+  },
+  {
+    "text": "cancel",
+    "label": "fist"
+  },
+  {
+    "text": "show",
+    "label": "open_hand"
+  },
+  {
+    "text": "pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "affirm",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "reject",
+    "label": "fist"
+  }
+]

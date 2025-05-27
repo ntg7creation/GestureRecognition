@@ -9,7 +9,7 @@ const gestureEstimator = new fp.GestureEstimator([
 ]);
 
 export function detectGesture(landmarks, setEmoji, setPoseData) {
-  console.log(landmarks);
+  // console.log(landmarks);
   const result = gestureEstimator.estimate(landmarks, 9); // confidence threshold
   // console.log(result);
   if (result.gestures?.length > 0) {

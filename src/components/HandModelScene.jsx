@@ -20,8 +20,11 @@ function HandModelScene() {
     const [landmarkData, setLandmarkData] = useState([]);
     const [dataset, setDataset] = useState([]);
     const [poseData, setPoseData] = useState([]);
+    const pollingActiveRef = useRef(false);
 
     const getCurrentRotationsRef = useRef(null);
+    const currentEmojiRef = useRef(null);
+
     // const webcamRef = useRef(null);
     // const [useWebcam, setUseWebcam] = useState(true); // toggle mode
 
@@ -105,8 +108,16 @@ function HandModelScene() {
         //TODO not sure we need this if
         if (landmarkData.length === 21) { // 21 landmarks expected
 
-            const clean = landmarkData.map(({ x, y, z }) => ({ x, y, z }));
-            detectGesture(clean, setEmoji, setPoseData);
+            const canvasWidth = CANVAS_WIDTH;
+            const canvasHeight = CANVAS_HEIGHT;
+
+            const scaled = landmarkData.map((pt) => [
+                pt.x * canvasWidth,
+                pt.y * canvasHeight,
+                pt.z * canvasWidth, // z is relative, scale arbitrarily
+            ]);
+            detectGesture(scaled, setEmoji, setPoseData);
+            // detectGesture(clean, setEmoji, setPoseData);
         }
     }, [landmarkData]);
 
@@ -166,6 +177,69 @@ function HandModelScene() {
         return () => window.removeEventListener("keydown", handler);
     }, [dataset]);
 
+
+    /* ---------------------- real time training connection --------------------- */
+    async function pollAndRespond() {
+        const res = await fetch("http://localhost:5000/api/pending-task");
+        const task = await res.json(); // { rotation_vector, label }
+
+        if (!task || !task.rotation_vector) return;
+        console.log("[JS] Received rotation vector from server:", task.rotation_vector);
+
+        // Update 3D model with prediction
+        threeSceneRef.current.setRotationVector(task.rotation_vector);
+        // Wait a bit for gesture to stabilize visually
+        setTimeout(async () => {
+            const raw = threeSceneRef.current.getCurrentRotations();
+            const rotationVector = Array.from(raw); // or [...raw]
+            console.log("[JS] Sending rotation vector:", rotationVector);
+
+            await fetch("http://localhost:5000/api/return-gesture", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ detected: rotationVector }),
+            });
+        }, 500);
+
+    }
+
+
+    async function startPolling() {
+        pollingActiveRef.current = true;
+        while (pollingActiveRef.current) {
+            try {
+                await pollAndRespond();
+            } catch (err) {
+                console.warn("[Polling Error]", err.message);
+            }
+            await new Promise((res) => setTimeout(res, 1000));
+        }
+    }
+
+    function stopPolling() {
+        pollingActiveRef.current = false;
+    }
+
+    useEffect(() => {
+        currentEmojiRef.current = emoji;
+    }, [emoji]);
+
+    const startTraining = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/api/start-training", {
+                method: "POST",
+            });
+            if (res.ok) {
+                console.log("Training started");
+                startPolling(); // ⬅️ now we begin polling
+            }
+        } catch (err) {
+            console.error("Failed to start training:", err.message);
+        }
+    };
+
+
+
     return (
         <div className="App3">
             <header className="App3-header">
@@ -184,6 +258,10 @@ function HandModelScene() {
                     onSubmit={handleSubmit}
                     response={response}
                 />
+                <button onClick={startTraining} style={{ marginTop: "10px" }}>
+                    Start Training
+                </button>
+
 
                 {/* <video
                     ref={webcamRef}

@@ -123,25 +123,31 @@ const animate = () => {
   animationId = requestAnimationFrame(animate);
 
   if (aiController) {
-    // aiController.update(); // smooth AI-controlled rotation
+    aiController.update(); // smooth AI-controlled rotation
+    // console.log("Bone 0 rotation.z:", aiController.boneRefs[0]?.rotation.z);
   }
-  if (fingerController) {
-    // console.log("test");
-    fingerController.update();
-  }
+  // if (fingerController) {
+  //   // console.log("test");
+  //   fingerController.update();
+  // }
   controls.update();
   renderer.render(scene, camera);
 };
 
-  animate();
+animate();
 
-  return {
-    cleanup: () => {
-      cancelAnimationFrame(animationId);
-      renderer.dispose();
-    },
-    setRotationVector: (vec) => {
-      if (aiController) aiController.setTarget(vec);
-    },
-  };
+return {
+  cleanup: () => {
+    cancelAnimationFrame(animationId);
+    renderer.dispose();
+  },
+  setRotationVector: (vec) => {
+    console.log("[ThreeScene] Received targeted rotation vector:", vec);
+    if (aiController) aiController.setTarget(vec);
+  },
+  getCurrentRotations: () => {
+    if (!aiController) return [];
+    return aiController.boneRefs.map((bone) => bone.rotation.z);
+  },
+};
 }

@@ -1,0 +1,6 @@
+[
+  { "text": "thumbs up", "label": "thumbs_up" },
+  { "text": "peace", "label": "victory" },
+  { "text": "closed hand", "label": "fist" },
+  { "text": "open", "label": "open_hand" }
+]
