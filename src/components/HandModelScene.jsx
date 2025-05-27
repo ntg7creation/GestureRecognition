@@ -103,19 +103,10 @@ function HandModelScene() {
     /* ---------------------------- classify gesture ---------------------------- */
     useEffect(() => {
         //TODO not sure we need this if
-        if (landmarkData.length === 21) { // 21 landmarks expected 
+        if (landmarkData.length === 21) { // 21 landmarks expected
 
-            /* ------------------- adopte scale to canvas for figerpose ------------------ */
-            const canvasWidth = CANVAS_WIDTH;
-            const canvasHeight = CANVAS_HEIGHT;
-
-            const scaled = landmarkData.map((pt) => ({
-                x: pt.x * canvasWidth,
-                y: pt.y * canvasHeight,
-                z: pt.z * canvasWidth, // or some constant scale
-            }));
-
-            detectGesture(scaled, setEmoji, setPoseData);
+            const clean = landmarkData.map(({ x, y, z }) => ({ x, y, z }));
+            detectGesture(clean, setEmoji, setPoseData);
         }
     }, [landmarkData]);
 

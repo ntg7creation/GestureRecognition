@@ -55,84 +55,83 @@ export function initThreeScene(canvas, width, height) {
   scene.add(backLight);
 
   /* -------------------------- add finger controllers ------------------------ */
-  const fingerKeyMap = {
-    q: ["Bone022", "Bone023", "Bone024"], // pinky down
-    _a: ["Bone022", "Bone023", "Bone024"], // pinky up
+const fingerKeyMap = {
+  // down
+  q: ["Bone022", "Bone023", "Bone024"],
+  w: ["Bone019", "Bone020", "Bone021"],
+  e: ["Bone016", "Bone017", "Bone018"],
+  r: ["Bone013", "Bone014", "Bone015"],
+  g: ["Bone003", "Bone004"],
 
-    w: ["Bone019", "Bone020", "Bone021"], // ring down
-    _s: ["Bone019", "Bone020", "Bone021"], // ring up
+  // up
+  a: ["Bone022", "Bone023", "Bone024"],
+  s: ["Bone019", "Bone020", "Bone021"],
+  d: ["Bone016", "Bone017", "Bone018"],
+  f: ["Bone013", "Bone014", "Bone015"],
+  b: ["Bone003", "Bone004"],
+};
 
-    e: ["Bone016", "Bone017", "Bone018"], // middle down
-    _d: ["Bone016", "Bone017", "Bone018"], // middle up
+/* -------------------------------- Load Mesh ------------------------------- */
+const loader = new GLTFLoader();
+loader.load(
+  "/models/Arm3.glb",
+  (gltf) => {
+    console.log("GLB loaded");
+    const model = gltf.scene;
+    // model.traverse((child) => {
+    //   if (child.isMesh) {
+    //     console.log("Mesh:", child.name, "Material:", child.material);
+    //     if (child.material.map) {
+    //       console.log("Texture map:", child.material.map);
+    //     } else {
+    //       console.warn("No texture map on", child.name);
+    //     }
+    //   }
+    // });
 
-    r: ["Bone013", "Bone014", "Bone015"], // index down
-    _f: ["Bone013", "Bone014", "Bone015"], // index up
+    modelRoot = model;
+    modelRoot.position.y = -6.5;
+    model.rotation.y = (Math.PI * 6.2) / 4;
 
-    g: ["Bone003", "Bone004"], // thumb down
-    _b: ["Bone003", "Bone004"], // thumb up
-  };
-
-  /* -------------------------------- Load Mesh ------------------------------- */
-  const loader = new GLTFLoader();
-  loader.load(
-    "/models/Arm3.glb",
-    (gltf) => {
-      console.log("GLB loaded");
-      const model = gltf.scene;
-      // model.traverse((child) => {
-      //   if (child.isMesh) {
-      //     console.log("Mesh:", child.name, "Material:", child.material);
-      //     if (child.material.map) {
-      //       console.log("Texture map:", child.material.map);
-      //     } else {
-      //       console.warn("No texture map on", child.name);
-      //     }
-      //   }
-      // });
-
-      modelRoot = model;
-      modelRoot.position.y = -6.5;
-      model.rotation.y = (Math.PI * 6.2) / 4;
-
-      const skinnedMesh = model.getObjectByProperty("type", "SkinnedMesh");
-      if (!skinnedMesh) {
-        console.warn("SkinnedMesh not found in GLB");
-      }
-
-      console.log(skinnedMesh);
-      const skeleton = skinnedMesh?.skeleton;
-      console.log(skeleton);
-      if (skeleton) {
-        // Register bones for keyboard and AI control
-        const boneRefs = trackedBoneNames.map((name) =>
-          skeleton.getBoneByName(name)
-        );
-        aiController = new AIController(boneRefs);
-
-        fingerController = new FingerController(fingerKeyMap, boneRefs);
-        // console.log(fingerController);
-      }
-
-      scene.add(model);
-    },
-    undefined,
-    (error) => console.error("GLB load error:", error)
-  );
-
-  /* ---------------------------- Animate function ---------------------------- */
-  const animate = () => {
-    animationId = requestAnimationFrame(animate);
-
-    if (aiController) {
-      // aiController.update(); // smooth AI-controlled rotation
+    const skinnedMesh = model.getObjectByProperty("type", "SkinnedMesh");
+    if (!skinnedMesh) {
+      console.warn("SkinnedMesh not found in GLB");
     }
-    if (fingerController) {
-      console.log("test");
-      fingerController.update();
+
+    // console.log(skinnedMesh);
+    const skeleton = skinnedMesh?.skeleton;
+    // console.log(skeleton);
+    if (skeleton) {
+      // Register bones for keyboard and AI control
+      const boneRefs = trackedBoneNames.map((name) =>
+        skeleton.getBoneByName(name)
+      );
+      aiController = new AIController(boneRefs);
+
+      fingerController = new FingerController(fingerKeyMap, boneRefs);
+      // console.log(fingerController);
     }
-    controls.update();
-    renderer.render(scene, camera);
-  };
+
+    scene.add(model);
+  },
+  undefined,
+  (error) => console.error("GLB load error:", error)
+);
+
+/* ---------------------------- Animate function ---------------------------- */
+const animate = () => {
+  animationId = requestAnimationFrame(animate);
+
+  if (aiController) {
+    // aiController.update(); // smooth AI-controlled rotation
+  }
+  if (fingerController) {
+    // console.log("test");
+    fingerController.update();
+  }
+  controls.update();
+  renderer.render(scene, camera);
+};
 
   animate();
 

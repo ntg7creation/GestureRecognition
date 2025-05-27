@@ -38,13 +38,11 @@ export class FingerController {
     window.addEventListener("keydown", (e) => {
       const key = e.key.toLowerCase();
       this.keysPressed.add(key);
-      this.keysPressed.add(`_${key}`);
     });
 
     window.addEventListener("keyup", (e) => {
       const key = e.key.toLowerCase();
       this.keysPressed.delete(key);
-      this.keysPressed.delete(`_${key}`);
     });
   }
 
@@ -53,12 +51,14 @@ export class FingerController {
       const bone = this.bonesByName[name];
       const [min, max] = jointLimits[name] || [0, Math.PI / 2];
 
-      const downKeys = [...this.keysPressed].filter((key) =>
-        this.keyToBones[key]?.includes(name)
-      );
-      const upKeys = [...this.keysPressed].filter((key) =>
-        this.keyToBones[`_${key}`]?.includes(name)
-      );
+
+      const downKeys = [...this.keysPressed].filter(
+  (key) => this.keyToBones[key]?.includes(name) && "qwertg".includes(key)
+);
+const upKeys = [...this.keysPressed].filter(
+  (key) => this.keyToBones[key]?.includes(name) && "asdfb".includes(key)
+);
+
 
       if (downKeys.length > 0) {
         this.rotationState[name] = Math.min(
