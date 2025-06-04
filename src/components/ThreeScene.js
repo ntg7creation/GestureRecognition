@@ -143,7 +143,16 @@ return {
   },
   setRotationVector: (vec) => {
     console.log("[ThreeScene] Received targeted rotation vector:", vec);
-    if (aiController) aiController.setTarget(vec);
+    const flattenedVec = vec.flat();
+    console.log("[ThreeScene] Flattened:", flattenedVec);
+    if (flattenedVec.length !== 15) {
+      console.warn(
+        "[ThreeScene] Received targeted rotation vector has wrong length",
+        vec
+      );
+      return;
+    }
+    if (aiController) aiController.setTarget(flattenedVec);
   },
   getCurrentRotations: () => {
     if (!aiController) return [];

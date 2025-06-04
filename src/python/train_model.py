@@ -28,7 +28,7 @@ def my_custom_loss(predicted_tensor, ground_truth_tensor):
 
 
 # 📝 Load training samples (input text + expected gesture)
-with open("training_pairs.json") as f:
+with open("training_pairs_extended.json") as f:
     samples = json.load(f)  # [{"text": "two_finger", "label": "victory"}, ...]
 
 def start_training():
@@ -40,7 +40,7 @@ def start_training():
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
     loss_fn = nn.MSELoss()
 
-    with open("training_pairs.json") as f:
+    with open("training_pairs_extended.json") as f:
         samples = json.load(f)
 
     model.train()
@@ -60,7 +60,8 @@ def start_training():
 
             # Send prediction and label to frontend
             rotation_vector = predicted_tensor.tolist()
-            print(f"[Training] Task sent to frontend: {label}\n{json.dumps(rotation_vector, indent=3)}")
+            # print(f"[Training] Task sent to frontend: {label}\n{json.dumps(rotation_vector, indent=3)}")
+            print(f"[Training] [{epoch + 1}:{i + 1}] → Sent to JS → Label: {label}")
             send_task_to_frontend(rotation_vector, label)
 
             # Wait for rotation vector

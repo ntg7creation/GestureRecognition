@@ -14,12 +14,15 @@ import { initThreeScene } from "./ThreeScene";
 
 export const CANVAS_WIDTH = 1280;
 export const CANVAS_HEIGHT = 960;
+let counter = 0;
 
 function HandModelScene() {
     const [emoji, setEmoji] = useState(null);
     const [landmarkData, setLandmarkData] = useState([]);
     const [dataset, setDataset] = useState([]);
     const [poseData, setPoseData] = useState([]);
+    // const [jsVectorCount, setJsVectorCount] = useState(0);
+
     const pollingActiveRef = useRef(false);
 
     const getCurrentRotationsRef = useRef(null);
@@ -185,7 +188,9 @@ function HandModelScene() {
 
         if (!task || !task.rotation_vector) return;
         console.log("[JS] Received rotation vector from server:", task.rotation_vector);
-
+        // setJsVectorCount((prev) => prev + 1);
+        counter += 1;
+        console.log("[JS] Vector count:", counter);
         // Update 3D model with prediction
         threeSceneRef.current.setRotationVector(task.rotation_vector);
         // Wait a bit for gesture to stabilize visually
@@ -225,6 +230,9 @@ function HandModelScene() {
     }, [emoji]);
 
     const startTraining = async () => {
+        // setJsVectorCount(0);
+        counter = 0;
+        console.log("Starting training...");
         try {
             const res = await fetch("http://localhost:5000/api/start-training", {
                 method: "POST",

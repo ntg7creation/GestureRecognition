@@ -15,7 +15,7 @@ export class AIController {
 
   setTarget(rotVec) {
     if (rotVec.length !== this.boneRefs.length) {
-      console.warn("Rotation vector length mismatch");
+      console.warn("Rotation vector length mismatch it is", rotVec.length);
       return;
     }
     this.targetRotations = rotVec;

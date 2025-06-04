@@ -1,0 +1,1602 @@
+[
+  {
+    "text": "indicate symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no symbol",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign move",
+    "label": "victory"
+  },
+  {
+    "text": "hold pose",
+    "label": "fist"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "display pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "confirm move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "yes gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "okay symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "peace sign",
+    "label": "victory"
+  },
+  {
+    "text": "display pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench symbol",
+    "label": "fist"
+  },
+  {
+    "text": "greet pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel gesture",
+    "label": "fist"
+  },
+  {
+    "text": "display move",
+    "label": "open_hand"
+  },
+  {
+    "text": "display symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "victory sign sign",
+    "label": "victory"
+  },
+  {
+    "text": "confirm gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "yes gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "cancel pose",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign gesture",
+    "label": "victory"
+  },
+  {
+    "text": "greet sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel sign",
+    "label": "fist"
+  },
+  {
+    "text": "yes symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "wave move",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny gesture",
+    "label": "fist"
+  },
+  {
+    "text": "deny gesture",
+    "label": "fist"
+  },
+  {
+    "text": "clench move",
+    "label": "fist"
+  },
+  {
+    "text": "hold symbol",
+    "label": "fist"
+  },
+  {
+    "text": "show move",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi move",
+    "label": "open_hand"
+  },
+  {
+    "text": "confirm gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "yes pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench sign",
+    "label": "fist"
+  },
+  {
+    "text": "approve move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign symbol",
+    "label": "victory"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "display gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "okay pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "greet pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "confirm sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "okay gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "victory sign pose",
+    "label": "victory"
+  },
+  {
+    "text": "display pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel sign",
+    "label": "fist"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "no sign",
+    "label": "fist"
+  },
+  {
+    "text": "hello sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "two symbol",
+    "label": "victory"
+  },
+  {
+    "text": "okay pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no symbol",
+    "label": "fist"
+  },
+  {
+    "text": "approve gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold sign",
+    "label": "fist"
+  },
+  {
+    "text": "peace symbol",
+    "label": "victory"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel move",
+    "label": "fist"
+  },
+  {
+    "text": "indicate pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "show symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "no gesture",
+    "label": "fist"
+  },
+  {
+    "text": "deny symbol",
+    "label": "fist"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet move",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench move",
+    "label": "fist"
+  },
+  {
+    "text": "confirm gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no symbol",
+    "label": "fist"
+  },
+  {
+    "text": "peace symbol",
+    "label": "victory"
+  },
+  {
+    "text": "no move",
+    "label": "fist"
+  },
+  {
+    "text": "show pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "display symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "yes move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "victory sign gesture",
+    "label": "victory"
+  },
+  {
+    "text": "show gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "no move",
+    "label": "fist"
+  },
+  {
+    "text": "display gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hold sign",
+    "label": "fist"
+  },
+  {
+    "text": "hello pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "display gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "peace move",
+    "label": "victory"
+  },
+  {
+    "text": "confirm gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench gesture",
+    "label": "fist"
+  },
+  {
+    "text": "approve pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold pose",
+    "label": "fist"
+  },
+  {
+    "text": "two symbol",
+    "label": "victory"
+  },
+  {
+    "text": "greet move",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel symbol",
+    "label": "fist"
+  },
+  {
+    "text": "indicate move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hello gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello move",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "cancel symbol",
+    "label": "fist"
+  },
+  {
+    "text": "cancel pose",
+    "label": "fist"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet move",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "yes symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny move",
+    "label": "fist"
+  },
+  {
+    "text": "approve move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench symbol",
+    "label": "fist"
+  },
+  {
+    "text": "two gesture",
+    "label": "victory"
+  },
+  {
+    "text": "cancel gesture",
+    "label": "fist"
+  },
+  {
+    "text": "wave sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hello symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "okay symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "okay gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "peace sign",
+    "label": "victory"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "no symbol",
+    "label": "fist"
+  },
+  {
+    "text": "greet gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "display pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "peace move",
+    "label": "victory"
+  },
+  {
+    "text": "okay sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "indicate symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "cancel move",
+    "label": "fist"
+  },
+  {
+    "text": "peace pose",
+    "label": "victory"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "display symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "indicate symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "greet gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "show gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "no sign",
+    "label": "fist"
+  },
+  {
+    "text": "no gesture",
+    "label": "fist"
+  },
+  {
+    "text": "no move",
+    "label": "fist"
+  },
+  {
+    "text": "clench gesture",
+    "label": "fist"
+  },
+  {
+    "text": "display symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "display move",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "yes symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "indicate sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "confirm sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny symbol",
+    "label": "fist"
+  },
+  {
+    "text": "peace move",
+    "label": "victory"
+  },
+  {
+    "text": "clench gesture",
+    "label": "fist"
+  },
+  {
+    "text": "wave sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "confirm sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "show symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "indicate gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "two move",
+    "label": "victory"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "greet sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench sign",
+    "label": "fist"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "hi gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave move",
+    "label": "open_hand"
+  },
+  {
+    "text": "two sign",
+    "label": "victory"
+  },
+  {
+    "text": "yes move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny move",
+    "label": "fist"
+  },
+  {
+    "text": "okay gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold symbol",
+    "label": "fist"
+  },
+  {
+    "text": "two pose",
+    "label": "victory"
+  },
+  {
+    "text": "greet move",
+    "label": "open_hand"
+  },
+  {
+    "text": "show gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hold symbol",
+    "label": "fist"
+  },
+  {
+    "text": "okay gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "greet gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel move",
+    "label": "fist"
+  },
+  {
+    "text": "no symbol",
+    "label": "fist"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "clench pose",
+    "label": "fist"
+  },
+  {
+    "text": "show move",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello move",
+    "label": "open_hand"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "cancel symbol",
+    "label": "fist"
+  },
+  {
+    "text": "yes symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign gesture",
+    "label": "victory"
+  },
+  {
+    "text": "clench symbol",
+    "label": "fist"
+  },
+  {
+    "text": "hello sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "confirm symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "two move",
+    "label": "victory"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench symbol",
+    "label": "fist"
+  },
+  {
+    "text": "greet symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel symbol",
+    "label": "fist"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave move",
+    "label": "open_hand"
+  },
+  {
+    "text": "victory sign move",
+    "label": "victory"
+  },
+  {
+    "text": "approve sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold move",
+    "label": "fist"
+  },
+  {
+    "text": "yes move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny gesture",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign symbol",
+    "label": "victory"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave move",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "okay gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench gesture",
+    "label": "fist"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "hold sign",
+    "label": "fist"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "display move",
+    "label": "open_hand"
+  },
+  {
+    "text": "display gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench symbol",
+    "label": "fist"
+  },
+  {
+    "text": "indicate sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold sign",
+    "label": "fist"
+  },
+  {
+    "text": "peace sign",
+    "label": "victory"
+  },
+  {
+    "text": "cancel gesture",
+    "label": "fist"
+  },
+  {
+    "text": "hello pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "show move",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "greet pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "confirm move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "okay pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "two sign",
+    "label": "victory"
+  },
+  {
+    "text": "greet gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench move",
+    "label": "fist"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "no pose",
+    "label": "fist"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi move",
+    "label": "open_hand"
+  },
+  {
+    "text": "peace symbol",
+    "label": "victory"
+  },
+  {
+    "text": "okay gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench sign",
+    "label": "fist"
+  },
+  {
+    "text": "okay move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny gesture",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign gesture",
+    "label": "victory"
+  },
+  {
+    "text": "greet move",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench pose",
+    "label": "fist"
+  },
+  {
+    "text": "okay move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hello gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny symbol",
+    "label": "fist"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "hold pose",
+    "label": "fist"
+  },
+  {
+    "text": "no sign",
+    "label": "fist"
+  },
+  {
+    "text": "show pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "show gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "okay symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "okay move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "two sign",
+    "label": "victory"
+  },
+  {
+    "text": "clench pose",
+    "label": "fist"
+  },
+  {
+    "text": "hello sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "yes pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "show sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "confirm symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "victory sign gesture",
+    "label": "victory"
+  },
+  {
+    "text": "greet gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "show symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel gesture",
+    "label": "fist"
+  },
+  {
+    "text": "greet sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench sign",
+    "label": "fist"
+  },
+  {
+    "text": "show pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "two sign",
+    "label": "victory"
+  },
+  {
+    "text": "indicate move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench gesture",
+    "label": "fist"
+  },
+  {
+    "text": "okay move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no sign",
+    "label": "fist"
+  },
+  {
+    "text": "peace pose",
+    "label": "victory"
+  },
+  {
+    "text": "hi symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "hold gesture",
+    "label": "fist"
+  },
+  {
+    "text": "approve symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "no gesture",
+    "label": "fist"
+  },
+  {
+    "text": "no gesture",
+    "label": "fist"
+  },
+  {
+    "text": "clench symbol",
+    "label": "fist"
+  },
+  {
+    "text": "hold move",
+    "label": "fist"
+  },
+  {
+    "text": "show symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "show sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "approve pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no gesture",
+    "label": "fist"
+  },
+  {
+    "text": "okay move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "cancel gesture",
+    "label": "fist"
+  },
+  {
+    "text": "two move",
+    "label": "victory"
+  },
+  {
+    "text": "hold pose",
+    "label": "fist"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "show move",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "yes gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "two symbol",
+    "label": "victory"
+  },
+  {
+    "text": "wave pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel symbol",
+    "label": "fist"
+  },
+  {
+    "text": "hello gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench sign",
+    "label": "fist"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi move",
+    "label": "open_hand"
+  },
+  {
+    "text": "peace pose",
+    "label": "victory"
+  },
+  {
+    "text": "confirm pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold move",
+    "label": "fist"
+  },
+  {
+    "text": "indicate gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench move",
+    "label": "fist"
+  },
+  {
+    "text": "two pose",
+    "label": "victory"
+  },
+  {
+    "text": "hi move",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny symbol",
+    "label": "fist"
+  },
+  {
+    "text": "yes pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "display move",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny pose",
+    "label": "fist"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "no move",
+    "label": "fist"
+  },
+  {
+    "text": "cancel symbol",
+    "label": "fist"
+  },
+  {
+    "text": "show sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "display sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "approve sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "okay sign",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "deny gesture",
+    "label": "fist"
+  },
+  {
+    "text": "indicate gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hold pose",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign move",
+    "label": "victory"
+  },
+  {
+    "text": "hold sign",
+    "label": "fist"
+  },
+  {
+    "text": "hello symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hello pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "indicate gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "indicate gesture",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "victory sign pose",
+    "label": "victory"
+  },
+  {
+    "text": "greet symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "hello sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "cancel gesture",
+    "label": "fist"
+  },
+  {
+    "text": "show sign",
+    "label": "open_hand"
+  },
+  {
+    "text": "deny sign",
+    "label": "fist"
+  },
+  {
+    "text": "greet move",
+    "label": "open_hand"
+  },
+  {
+    "text": "display gesture",
+    "label": "open_hand"
+  },
+  {
+    "text": "victory sign move",
+    "label": "victory"
+  },
+  {
+    "text": "indicate move",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "clench gesture",
+    "label": "fist"
+  },
+  {
+    "text": "approve symbol",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "no move",
+    "label": "fist"
+  },
+  {
+    "text": "victory sign sign",
+    "label": "victory"
+  },
+  {
+    "text": "display symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "wave move",
+    "label": "open_hand"
+  },
+  {
+    "text": "display symbol",
+    "label": "open_hand"
+  },
+  {
+    "text": "clench move",
+    "label": "fist"
+  },
+  {
+    "text": "okay pose",
+    "label": "thumbs_up"
+  },
+  {
+    "text": "hello pose",
+    "label": "open_hand"
+  },
+  {
+    "text": "hi sign",
+    "label": "open_hand"
+  }
+]
